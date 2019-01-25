@@ -17,7 +17,7 @@ add_executable(open3d-viewer
     open3d_viewer.cpp
 )
 target_link_libraries(open3d-viewer ${Open3D_LIBRARIES} dl)
-INSTALL(TARGETS open3d-viewer DESTINATION bin)
+install(TARGETS open3d-viewer DESTINATION bin)
 
 message(CMAKE_INSTALL_PREFIX)
 message(CPACK_PACKAGING_INSTALL_PREFIX)
@@ -31,7 +31,7 @@ set(CPACK_PACKAGE_VERSION_MAJOR "0")
 set(CPACK_PACKAGE_VERSION_MINOR "5")
 set(CPACK_PACKAGE_VERSION_PATCH "0")
 
-# https://stackoverflow.com/a/7363073/1255535
+# How to set cpack prefix: https://stackoverflow.com/a/7363073/1255535
 set(CPACK_SET_DESTDIR true)
 set(CPACK_INSTALL_PREFIX /usr)
 
