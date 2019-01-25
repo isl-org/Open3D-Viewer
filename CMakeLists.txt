@@ -13,11 +13,14 @@ include_directories(${Open3D_INCLUDE_DIRS})
 
 # Viewer
 link_directories(${Open3D_LIBRARY_DIRS})
-add_executable(open3d_viewer
+add_executable(open3d-viewer
     open3d_viewer.cpp
 )
-target_link_libraries(open3d_viewer ${Open3D_LIBRARIES} dl)
-INSTALL(TARGETS open3d_viewer DESTINATION open3d-viewer)
+target_link_libraries(open3d-viewer ${Open3D_LIBRARIES} dl)
+INSTALL(TARGETS open3d-viewer DESTINATION bin)
+
+message(CMAKE_INSTALL_PREFIX)
+message(CPACK_PACKAGING_INSTALL_PREFIX)
 
 # DEB package related
 set(CPACK_GENERATOR "DEB")
@@ -27,4 +30,9 @@ set(CPACK_PACKAGE_NAME "open3d-viewer")
 set(CPACK_PACKAGE_VERSION_MAJOR "0")
 set(CPACK_PACKAGE_VERSION_MINOR "5")
 set(CPACK_PACKAGE_VERSION_PATCH "0")
+
+# https://stackoverflow.com/a/7363073/1255535
+set(CPACK_SET_DESTDIR true)
+set(CPACK_INSTALL_PREFIX /usr)
+
 include(CPack)
