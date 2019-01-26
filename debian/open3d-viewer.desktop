@@ -5,4 +5,4 @@ Comment=Processor and editor of large 3D triangular meshes
 Exec=open3d-viewer %F
 Terminal=false
 Categories=Graphics
-MimeType=model/x-ply
+MimeType=model/x-ply;
