@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Open3D-Viewer
+Comment=Processor and editor of large 3D triangular meshes
+Exec=open3d-viewer %F
+Terminal=false
+Categories=Graphics
+MimeType=model/x-ply

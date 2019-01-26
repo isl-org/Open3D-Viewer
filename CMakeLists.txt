@@ -18,6 +18,9 @@ add_executable(open3d-viewer
 )
 target_link_libraries(open3d-viewer ${Open3D_LIBRARIES} dl)
 install(TARGETS open3d-viewer DESTINATION bin)
+install(FILES debian/open3d-viewer.desktop DESTINATION share/applications)
+install(FILES debian/open3d-viewer.xml DESTINATION share/mime/packages)
+install(FILES debian/open3d-viewer DESTINATION lib/mime/packages)
 
 message(CMAKE_INSTALL_PREFIX)
 message(CPACK_PACKAGING_INSTALL_PREFIX)
