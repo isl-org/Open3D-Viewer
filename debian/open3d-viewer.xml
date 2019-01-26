@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+<mime-type type="model/x-ply">
+    <comment>Stanford Triangle Format</comment>
+    <glob pattern="*.ply"/>
+    <magic priority="50">
+        <match value="ply" type="string" offset="0"/>
+    </magic>
+</mime-type>
+</mime-info>

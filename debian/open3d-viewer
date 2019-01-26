@@ -1,0 +1,1 @@
+model/x-ply; /usr/bin/open3d-viewer; test=/usr/bin/test -n "$DISPLAY"; nametemplate=%.ply
