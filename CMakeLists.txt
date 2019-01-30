@@ -17,25 +17,35 @@ add_executable(open3d-viewer
     open3d_viewer.cpp
 )
 target_link_libraries(open3d-viewer ${Open3D_LIBRARIES} dl)
-install(TARGETS open3d-viewer DESTINATION bin)
-install(FILES debian/open3d-viewer.desktop DESTINATION share/applications)
-install(FILES debian/open3d-viewer.xml DESTINATION share/mime/packages)
-install(FILES debian/open3d-viewer DESTINATION lib/mime/packages)
 
-message(CMAKE_INSTALL_PREFIX)
-message(CPACK_PACKAGING_INSTALL_PREFIX)
+# Debian package
+if (DEBIAN_FOUND)
+    # Installation locations
+    # TODO: add icons
+    install(TARGETS open3d-viewer DESTINATION bin)
+    install(FILES debian/open3d-viewer.desktop DESTINATION share/applications)
+    install(FILES debian/open3d-viewer.xml DESTINATION share/mime/packages)
+    install(FILES debian/open3d-viewer DESTINATION lib/mime/packages)
+    message(CMAKE_INSTALL_PREFIX)
+    message(CPACK_PACKAGING_INSTALL_PREFIX)
 
-# DEB package related
-set(CPACK_GENERATOR "DEB")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Open3D Viewer")
-SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Intel VCL")
-set(CPACK_PACKAGE_NAME "open3d-viewer")
-set(CPACK_PACKAGE_VERSION_MAJOR "0")
-set(CPACK_PACKAGE_VERSION_MINOR "5")
-set(CPACK_PACKAGE_VERSION_PATCH "0")
+    # CPACK parameters
+    set(CPACK_GENERATOR "DEB")
+    set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Open3D Viewer")
+    SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Intel VCL")
+    set(CPACK_PACKAGE_NAME "open3d-viewer")
+    set(CPACK_PACKAGE_VERSION_MAJOR "0")
+    set(CPACK_PACKAGE_VERSION_MINOR "5")
+    set(CPACK_PACKAGE_VERSION_PATCH "0")
 
-# How to set cpack prefix: https://stackoverflow.com/a/7363073/1255535
-set(CPACK_SET_DESTDIR true)
-set(CPACK_INSTALL_PREFIX /usr)
+    # How to set cpack prefix: https://stackoverflow.com/a/7363073/1255535
+    set(CPACK_SET_DESTDIR true)
+    set(CPACK_INSTALL_PREFIX /usr)
+endif()
+
+# macOS package
+if (APPLE)
+    message(STATUS "I am apple")
+endif()
 
 include(CPack)
