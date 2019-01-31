@@ -52,7 +52,7 @@ if (APPLE)
     message(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH})
     set_target_properties(open3d-viewer PROPERTIES MACOSX_BUNDLE TRUE)
 
-    set(MACOSX_BUNDLE_EXECUTABLE_NAME "Open3D-Viewer")
+    set(MACOSX_BUNDLE_EXECUTABLE_NAME "open3d-viewer")
     set(MACOSX_BUNDLE_INFO_STRING "Open3D-Viewer: 3D Model viewer with Open3D")
     set(MACOSX_BUNDLE_ICON_FILE "")
     set(MACOSX_BUNDLE_GUI_IDENTIFIER "Open3D-Viewer-GUI")
