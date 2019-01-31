@@ -2,60 +2,78 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleAllowMixedLocalizations</key>
-	<true/>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>*</string>
+				<string>ply</string>
 			</array>
+			<key>CFBundleTypeName</key>
+			<string>PLY 3D file</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
-				<string>****</string>
+				<string>PLY</string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
+			<key>LSIsAppleDefaultForType</key>
+			<string>Yes</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>pcd</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>PCD 3D file</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>PCD</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSIsAppleDefaultForType</key>
+			<string>Yes</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>xyz</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>XYZ 3D file</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>XYZ</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSIsAppleDefaultForType</key>
+			<string>Yes</string>
 		</dict>
 	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>droplet</string>
 	<key>CFBundleIconFile</key>
 	<string>open3d</string>
+	<key>CFBundleGetInfoString</key>
+	<string>Open3D-Viewer: 3D Model viewer with Open3D</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.apple.ScriptEditor.id.droptest</string>
+	<string>com.intel_isl.open3d_viewer</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>droptest</string>
+	<string>BNDL</string>
+	<key>CFBundleLongVersionString</key>
+	<string>0.5.0</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
-	<string>dplt</string>
-	<key>LSMinimumSystemVersionByArchitecture</key>
-	<dict>
-		<key>x86_64</key>
-		<string>10.6</string>
-	</dict>
+	<string>com.intel_isl.open3d_viewer</string>
 	<key>LSRequiresCarbon</key>
 	<true/>
-	<key>WindowState</key>
-	<dict>
-		<key>dividerCollapsed</key>
-		<false/>
-		<key>eventLogLevel</key>
-		<integer>-1</integer>
-		<key>name</key>
-		<string>ScriptWindowState</string>
-		<key>positionOfDivider</key>
-		<real>583</real>
-		<key>savedFrame</key>
-		<string>-1261 566 853 744 -2560 0 2560 1600 </string>
-		<key>selectedTabView</key>
-		<string>event log</string>
-	</dict>
 </dict>
 </plist>
