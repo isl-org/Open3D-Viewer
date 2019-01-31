@@ -32,3 +32,4 @@ build/
 *.exe
 *.out
 # *.app
+/open3d-viewer
