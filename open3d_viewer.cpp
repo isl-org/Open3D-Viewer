@@ -27,6 +27,7 @@
 #include <iostream>
 #include <memory>
 #include <thread>
+#include <thread>
 
 #include <Core/Core.h>
 #include <IO/IO.h>
@@ -57,10 +58,11 @@ bool read_and_visualize_point_cloud(const std::string &file_name) {
         PrintWarning("Successfully read %s\n", file_name.c_str());
     } else {
         PrintError("Failed to read %s\n\n", file_name.c_str());
-        return 1;
+        return false;
     }
     cloud_ptr->NormalizeNormals();
     DrawGeometries({cloud_ptr}, "PointCloud", 1600, 900);
+    return true;
 }
 
 int main(int argc, char *argv[]) {
@@ -68,6 +70,7 @@ int main(int argc, char *argv[]) {
     if (argc < 2) {
         PrintOpen3DVersion();
         PrintInfo("Usage: Visualizer [filename]\n");
+        std::this_thread::sleep_for(std::chrono::seconds(5));
         return 1;
     }
 
@@ -76,5 +79,5 @@ int main(int argc, char *argv[]) {
     if (!read_and_visualize_mesh(file_name)) {
         rc = read_and_visualize_point_cloud(file_name);
     }
-    return rc;
+    return rc ? 0 : 1;
 }
