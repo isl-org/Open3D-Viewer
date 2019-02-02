@@ -48,7 +48,7 @@ bool read_and_visualize_mesh(const std::string &file_name) {
         return false;
     }
     mesh_ptr->ComputeVertexNormals();
-    DrawGeometries({mesh_ptr}, "Mesh", 1600, 900);
+    DrawGeometries({mesh_ptr}, "Mesh " + file_name, 1600, 900);
     return true;
 }
 
@@ -61,7 +61,7 @@ bool read_and_visualize_point_cloud(const std::string &file_name) {
         return false;
     }
     cloud_ptr->NormalizeNormals();
-    DrawGeometries({cloud_ptr}, "PointCloud", 1600, 900);
+    DrawGeometries({cloud_ptr}, "PointCloud " + file_name, 1600, 900);
     return true;
 }
 
