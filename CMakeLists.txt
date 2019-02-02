@@ -11,6 +11,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Open3D_CXX_FLAGS} -O3")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${Open3D_EXE_LINKER_FLAGS}")
 include_directories(${Open3D_INCLUDE_DIRS})
 
+add_subdirectory("debian")
+
 # Viewer
 link_directories(${Open3D_LIBRARY_DIRS})
 add_executable(open3d-viewer
