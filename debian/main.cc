@@ -29,49 +29,13 @@
 #include <thread>
 #include <thread>
 
-#include <Core/Core.h>
-#include <IO/IO.h>
-#include <Visualization/Visualization.h>
+#include "Core/Core.h"
+#include "IO/IO.h"
+#include "Visualization/Visualization.h"
+
+#include "auto_visualize.h"
 
 using namespace open3d;
-
-bool read_and_visualize_mesh(const std::string& file_name) {
-    auto mesh_ptr = std::make_shared<TriangleMesh>();
-    if (ReadTriangleMesh(file_name, *mesh_ptr)) {
-        PrintWarning("Successfully read %s\n", file_name.c_str());
-        if (mesh_ptr->triangles_.size() == 0) {
-            PrintWarning("Contains 0 triangles, will read as point cloud\n");
-            return false;
-        }
-    } else {
-        PrintError("Failed to read %s\n\n", file_name.c_str());
-        return false;
-    }
-    mesh_ptr->ComputeVertexNormals();
-    DrawGeometries({mesh_ptr}, "Mesh " + file_name, 1600, 900);
-    return true;
-}
-
-bool read_and_visualize_point_cloud(const std::string& file_name) {
-    auto cloud_ptr = std::make_shared<PointCloud>();
-    if (ReadPointCloud(file_name, *cloud_ptr)) {
-        PrintWarning("Successfully read %s\n", file_name.c_str());
-    } else {
-        PrintError("Failed to read %s\n\n", file_name.c_str());
-        return false;
-    }
-    cloud_ptr->NormalizeNormals();
-    DrawGeometries({cloud_ptr}, "PointCloud " + file_name, 1600, 900);
-    return true;
-}
-
-bool auto_visualize(const std::string& file_name) {
-    bool rc = true;
-    if (!read_and_visualize_mesh(file_name)) {
-        rc = read_and_visualize_point_cloud(file_name);
-    }
-    return rc;
-}
 
 int main(int argc, char* argv[]) {
     SetVerbosityLevel(VerbosityLevel::VerboseAlways);
