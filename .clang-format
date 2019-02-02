@@ -8,3 +8,5 @@ SortIncludes: false
 ContinuationIndentWidth: 8
 AccessModifierOffset: -4
 BinPackParameters: false
+DerivePointerAlignment: false
+PointerAlignment: Left

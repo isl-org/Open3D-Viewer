@@ -35,7 +35,7 @@
 
 using namespace open3d;
 
-bool read_and_visualize_mesh(const std::string &file_name) {
+bool read_and_visualize_mesh(const std::string& file_name) {
     auto mesh_ptr = std::make_shared<TriangleMesh>();
     if (ReadTriangleMesh(file_name, *mesh_ptr)) {
         PrintWarning("Successfully read %s\n", file_name.c_str());
@@ -52,7 +52,7 @@ bool read_and_visualize_mesh(const std::string &file_name) {
     return true;
 }
 
-bool read_and_visualize_point_cloud(const std::string &file_name) {
+bool read_and_visualize_point_cloud(const std::string& file_name) {
     auto cloud_ptr = std::make_shared<PointCloud>();
     if (ReadPointCloud(file_name, *cloud_ptr)) {
         PrintWarning("Successfully read %s\n", file_name.c_str());
@@ -65,7 +65,15 @@ bool read_and_visualize_point_cloud(const std::string &file_name) {
     return true;
 }
 
-int main(int argc, char *argv[]) {
+bool auto_visualize(const std::string& file_name) {
+    bool rc = true;
+    if (!read_and_visualize_mesh(file_name)) {
+        rc = read_and_visualize_point_cloud(file_name);
+    }
+    return rc;
+}
+
+int main(int argc, char* argv[]) {
     SetVerbosityLevel(VerbosityLevel::VerboseAlways);
     if (argc < 2) {
         PrintOpen3DVersion();
@@ -75,9 +83,5 @@ int main(int argc, char *argv[]) {
     }
 
     std::string file_name(argv[1]);
-    bool rc = true;
-    if (!read_and_visualize_mesh(file_name)) {
-        rc = read_and_visualize_point_cloud(file_name);
-    }
-    return rc ? 0 : 1;
+    return auto_visualize(file_name) ? 0 : 1;
 }

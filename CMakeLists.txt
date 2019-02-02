@@ -20,47 +20,50 @@ target_link_libraries(open3d-viewer ${Open3D_LIBRARIES} dl)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR})
 
 # Debian package
-if (DEBIAN_FOUND)
-    # Installation locations
-    # TODO: add icons
-    install(TARGETS open3d-viewer DESTINATION bin)
-    install(FILES debian/open3d-viewer.desktop DESTINATION share/applications)
-    install(FILES debian/open3d-viewer.xml DESTINATION share/mime/packages)
-    install(FILES debian/open3d-viewer DESTINATION lib/mime/packages)
-    message(CMAKE_INSTALL_PREFIX)
-    message(CPACK_PACKAGING_INSTALL_PREFIX)
+if (UNIX)
+    # macOS package
+    # Difference betwwen MACOSX_BUNDLE and CPACK_BUNDLE_*:
+    # https://gitlab.kitware.com/cmake/community/wikis/doc/cpack/PackageGenerators#dragndrop-osx-only
+    if (APPLE)
+        message(STATUS "Building package for macOS")
+        message(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH})
+        set_target_properties(open3d-viewer PROPERTIES MACOSX_BUNDLE TRUE)
 
-    # CPACK parameters
-    set(CPACK_GENERATOR "DEB")
-    set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Open3D Viewer")
-    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Intel ISL")
-    set(CPACK_PACKAGE_NAME "open3d-viewer")
-    set(CPACK_PACKAGE_VERSION_MAJOR "0")
-    set(CPACK_PACKAGE_VERSION_MINOR "5")
-    set(CPACK_PACKAGE_VERSION_PATCH "0")
+        set(MACOSX_BUNDLE_EXECUTABLE_NAME "open3d-viewer")
+        set(MACOSX_BUNDLE_INFO_STRING "Open3D-Viewer: 3D Model viewer with Open3D")
+        set(MACOSX_BUNDLE_ICON_FILE "")
+        set(MACOSX_BUNDLE_GUI_IDENTIFIER "Open3D-Viewer-GUI")
+        set(MACOSX_BUNDLE_LONG_VERSION_STRING "0.5.0")
+        set(MACOSX_BUNDLE_BUNDLE_NAME "BNDL") # Default
+        set(MACOSX_BUNDLE_SHORT_VERSION_STRING "0.5.0")
+        set(MACOSX_BUNDLE_BUNDLE_VERSION "1") # Default
+        set(MACOSX_BUNDLE_COPYRIGHT "Copyright © 2019 Intel Corporation. All rights reserved.")
 
-    # How to set cpack prefix: https://stackoverflow.com/a/7363073/1255535
-    set(CPACK_SET_DESTDIR true)
-    set(CPACK_INSTALL_PREFIX /usr)
-endif()
+    # Debian package
+    else ()
+        message(STATUS "Building package for Debian")
+        # Installation locations
+        # TODO: add icons
+        install(TARGETS open3d-viewer DESTINATION bin)
+        install(FILES debian/open3d-viewer.desktop DESTINATION share/applications)
+        install(FILES debian/open3d-viewer.xml DESTINATION share/mime/packages)
+        install(FILES debian/open3d-viewer DESTINATION lib/mime/packages)
+        message(CMAKE_INSTALL_PREFIX)
+        message(CPACK_PACKAGING_INSTALL_PREFIX)
 
-# macOS package
-# Difference betwwen MACOSX_BUNDLE and CPACK_BUNDLE_*:
-# https://gitlab.kitware.com/cmake/community/wikis/doc/cpack/PackageGenerators#dragndrop-osx-only
-if (APPLE)
-    message(STATUS "I am apple")
-    message(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH})
-    set_target_properties(open3d-viewer PROPERTIES MACOSX_BUNDLE TRUE)
+        # CPACK parameters
+        set(CPACK_GENERATOR "DEB")
+        set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Open3D Viewer")
+        set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Intel ISL")
+        set(CPACK_PACKAGE_NAME "open3d-viewer")
+        set(CPACK_PACKAGE_VERSION_MAJOR "0")
+        set(CPACK_PACKAGE_VERSION_MINOR "5")
+        set(CPACK_PACKAGE_VERSION_PATCH "0")
 
-    set(MACOSX_BUNDLE_EXECUTABLE_NAME "open3d-viewer")
-    set(MACOSX_BUNDLE_INFO_STRING "Open3D-Viewer: 3D Model viewer with Open3D")
-    set(MACOSX_BUNDLE_ICON_FILE "")
-    set(MACOSX_BUNDLE_GUI_IDENTIFIER "Open3D-Viewer-GUI")
-    set(MACOSX_BUNDLE_LONG_VERSION_STRING "0.5.0")
-    set(MACOSX_BUNDLE_BUNDLE_NAME "BNDL") # Default
-    set(MACOSX_BUNDLE_SHORT_VERSION_STRING "0.5.0")
-    set(MACOSX_BUNDLE_BUNDLE_VERSION "1") # Default
-    set(MACOSX_BUNDLE_COPYRIGHT "Copyright © 2019 Intel Corporation. All rights reserved.")
-endif()
+        # How to set cpack prefix: https://stackoverflow.com/a/7363073/1255535
+        set(CPACK_SET_DESTDIR true)
+        set(CPACK_INSTALL_PREFIX /usr)
+    endif()
+endif (UNIX)
 
 include(CPack)
