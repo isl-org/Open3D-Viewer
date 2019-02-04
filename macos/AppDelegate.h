@@ -2,6 +2,6 @@
 
 @interface AppDelegate : NSObject<NSApplicationDelegate>
 
-@property(assign, nonatomic) IBOutlet NSWindow *window;
+@property(assign, nonatomic) IBOutlet NSWindow* window;
 
 @end

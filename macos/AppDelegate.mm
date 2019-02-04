@@ -5,18 +5,32 @@
 @implementation AppDelegate
 
 @synthesize window = _windows;
-
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+- (void)applicationDidFinishLaunching:(NSNotification*)aNotification {
     // Insert code here to initialize your application
 }
 
-- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename {
+- (void)run_thread:(NSObject*)phrase {
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+
+    NSLog(@"RECORD FILE PATH ---->   %@", phrase);
+
+    [pool drain];
+}
+
+- (BOOL)application:(NSApplication*)sender openFile:(NSString*)filename {
     // Redirect log for debugging
     int fd = creat("/Users/ylao/repo/cocoa-app/log.txt",
                    S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
     close(STDERR_FILENO);
     dup(fd);
     close(fd);
+
+    // Creating new thrads in Obj-C
+    // https://stackoverflow.com/questions/5558950/how-to-pass-an-argument-through-nsthread
+    NSObject* phrase = @"I JUST MADE IT THROUGH TO THE THREAD METHOD!";
+    [NSThread detachNewThreadSelector:@selector(run_thread:)
+                             toTarget:self
+                           withObject:phrase];
 
     auto_visualize(std::string([filename UTF8String]));
 
@@ -25,15 +39,18 @@
     // NSString *open3d_viewer_path = [NSString
     //         stringWithFormat:@"%@/%@", resource_path, @"open3d-viewer-bin"];
     // NSString *full_command =
-    //         [NSString stringWithFormat:@"%@ %@", open3d_viewer_path, filename];
+    //         [NSString stringWithFormat:@"%@ %@", open3d_viewer_path,
+    //         filename];
 
     // [NSString stringWithFormat:@"%@ %@", open3d_viewer_path, filename];
     // https://stackoverflow.com/questions/8001677/how-do-i-convert-a-nsstring-into-a-stdstring
     // https://stackoverflow.com/questions/3552195/how-to-convert-stdstring-to-nsstring
-    // std::string full_command_std = concat_string(std::string([open3d_viewer_path UTF8String]),
+    // std::string full_command_std =
+    // concat_string(std::string([open3d_viewer_path UTF8String]),
     //                                              std::string(" "));
-    // full_command_std = concat_string(full_command_std, std::string([filename UTF8String]));
-    // NSString *full_command = [NSString stringWithCString:full_command_std.c_str()
+    // full_command_std = concat_string(full_command_std, std::string([filename
+    // UTF8String])); NSString *full_command = [NSString
+    // stringWithCString:full_command_std.c_str()
     //                           encoding:[NSString defaultCStringEncoding]];
     // NSLog(@"%@", full_command);
 
@@ -50,5 +67,4 @@
     // [[NSApplication sharedApplication] terminate:self];
     return YES;
 }
-
 @end
