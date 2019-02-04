@@ -9,29 +9,28 @@
     // Insert code here to initialize your application
 }
 
-- (void)run_thread:(NSObject*)phrase {
+- (void)run_thread:(NSString*)filename {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
-    NSLog(@"RECORD FILE PATH ---->   %@", phrase);
-
-    [pool drain];
-}
-
-- (BOOL)application:(NSApplication*)sender openFile:(NSString*)filename {
     // Redirect log for debugging
-    int fd = creat("/Users/ylao/repo/cocoa-app/log.txt",
+    int fd = creat("/Users/ylao/repo/Open3D-Viewer/log.txt",
                    S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
     close(STDERR_FILENO);
     dup(fd);
     close(fd);
+    NSLog(@"%@", filename);
+    auto_visualize(std::string([filename UTF8String]));
+
+    // [pool drain];
+}
+
+- (BOOL)application:(NSApplication*)sender openFile:(NSString*)filename {
 
     // Creating new thrads in Obj-C
     // https://stackoverflow.com/questions/5558950/how-to-pass-an-argument-through-nsthread
-    NSObject* phrase = @"I JUST MADE IT THROUGH TO THE THREAD METHOD!";
-    [NSThread detachNewThreadSelector:@selector(run_thread:)
-                             toTarget:self
-                           withObject:phrase];
-
+    // [NSThread detachNewThreadSelector:@selector(run_thread:)
+    //                          toTarget:self
+    //                        withObject:filename];
     auto_visualize(std::string([filename UTF8String]));
 
     // Get full command
@@ -64,7 +63,8 @@
     // [task release];
 
     // Terminate app: https://stackoverflow.com/a/25259343/1255535
-    // [[NSApplication sharedApplication] terminate:self];
+    sleep(1000);
+    [[NSApplication sharedApplication] terminate:self];
     return YES;
 }
 @end
