@@ -1,6 +1,6 @@
 #import "AppDelegate.h"
 #import "string"
-#import "auto_visualize.h"
+// #import "auto_visualize.h"
 
 @implementation AppDelegate
 
@@ -9,20 +9,20 @@
     // Insert code here to initialize your application
 }
 
-- (void)run_thread:(NSString*)filename {
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+// - (void)run_thread:(NSString*)filename {
+//     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
-    // Redirect log for debugging
-    int fd = creat("/Users/ylao/repo/Open3D-Viewer/log.txt",
-                   S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-    close(STDERR_FILENO);
-    dup(fd);
-    close(fd);
-    NSLog(@"%@", filename);
-    auto_visualize(std::string([filename UTF8String]));
+//     // Redirect log for debugging
+//     int fd = creat("/Users/ylao/repo/Open3D-Viewer/log.txt",
+//                    S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+//     close(STDERR_FILENO);
+//     dup(fd);
+//     close(fd);
+//     NSLog(@"%@", filename);
+//     auto_visualize(std::string([filename UTF8String]));
 
-    // [pool drain];
-}
+//     // [pool drain];
+// }
 
 - (BOOL)application:(NSApplication*)sender openFile:(NSString*)filename {
 
@@ -31,7 +31,7 @@
     // [NSThread detachNewThreadSelector:@selector(run_thread:)
     //                          toTarget:self
     //                        withObject:filename];
-    auto_visualize(std::string([filename UTF8String]));
+    // auto_visualize(std::string([filename UTF8String]));
 
     // Get full command
     // NSString *resource_path = [[NSBundle mainBundle] resourcePath];

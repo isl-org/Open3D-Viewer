@@ -4,7 +4,7 @@ message(STATUS "Building package for Debian")
 # Viewer
 link_directories(${Open3D_LIBRARY_DIRS})
 add_executable(open3d-viewer
-    main.cc
+    ../main.cc
     ../auto_visualize.cc
 )
 target_include_directories(open3d-viewer PUBLIC ${PROJECT_SOURCE_DIR})
