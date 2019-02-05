@@ -63,8 +63,7 @@
     // [task release];
 
     // Terminate app: https://stackoverflow.com/a/25259343/1255535
-    sleep(1000);
-    [[NSApplication sharedApplication] terminate:self];
+    [[NSApplication sharedApplication] terminate:nil];
     return YES;
 }
 @end
