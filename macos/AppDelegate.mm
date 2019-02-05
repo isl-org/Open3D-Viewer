@@ -26,11 +26,11 @@
 
 - (BOOL)application:(NSApplication*)sender openFile:(NSString*)filename {
     // Redirect log for debugging
-    int fd = creat("/Users/ylao/repo/Open3D-Viewer/log.txt",
-                   S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-    close(STDERR_FILENO);
-    dup(fd);
-    close(fd);
+    // int fd = creat("/Users/ylao/repo/Open3D-Viewer/log.txt",
+    //                S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+    // close(STDERR_FILENO);
+    // dup(fd);
+    // close(fd);
 
     // Creating new thrads in Obj-C
     // https://stackoverflow.com/questions/5558950/how-to-pass-an-argument-through-nsthread
