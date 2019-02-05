@@ -59,7 +59,7 @@
     [task setStandardOutput:[NSPipe pipe]];
     [task setStandardInput:[NSPipe pipe]];
     [task launch];
-    [task waitUntilExit];
+    // [task waitUntilExit];
     [task release];
 
     // Terminate app: https://stackoverflow.com/a/25259343/1255535
