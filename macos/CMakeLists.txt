@@ -49,10 +49,3 @@ set_target_properties(
 )
 target_include_directories(open3d-viewer PUBLIC ${PROJECT_SOURCE_DIR})
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -framework AppKit")
-
-# get_target_property(archive_output_dir open3d-viewer LINK_FLAGS)
-# message(STATUS "archive_output_dir: ${archive_output_dir}")
-# get_target_property(library_output_dir open3d-viewer LIBRARY_OUTPUT_DIRECTORY)
-# message(STATUS "library_output_dir: ${library_output_dir}")
-# get_target_property(runtime_output_dir open3d-viewer RUNTIME_OUTPUT_DIRECTORY)
-# message(STATUS "runtime_output_dir: ${runtime_output_dir}")
