@@ -17,3 +17,7 @@ if (UNIX)
         add_subdirectory("debian")
     endif (APPLE)
 endif (UNIX)
+
+if (WIN32)
+    message(STATUS "Windows")
+endif (WIN32)
