@@ -5,8 +5,8 @@ include(ExternalProject)
 
 ExternalProject_Add(
     open3d
-    GIT_REPOSITORY https://github.com/IntelVCL/Open3D.git
-    GIT_TAG v0.5.0
+    GIT_REPOSITORY https://github.com/yxlao/Open3D.git
+    GIT_TAG viewer-save-path
     PREFIX open3d
     UPDATE_COMMAND ""
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
