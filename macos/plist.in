@@ -78,6 +78,30 @@
             <key>LSHandlerRank</key>
 			<string>Owner</string>
         </dict>
+        <dict>
+            <key>CFBundleTypeExtensions</key>
+            <array>
+                <string>stl</string>
+            </array>
+            <key>CFBundleTypeIconFile</key>
+			<string>open3d_docs.icns</string>
+            <key>CFBundleTypeMIMETypes</key>
+            <array>
+                <string>model/x-stl</string>
+            </array>
+            <key>CFBundleTypeName</key>
+            <string>STL 3D file</string>
+            <key>CFBundleTypeOSTypes</key>
+            <array>
+                <string>STL</string>
+            </array>
+            <key>CFBundleTypeRole</key>
+            <string>Viewer</string>
+            <key>LSIsAppleDefaultForType</key>
+            <true/>
+            <key>LSHandlerRank</key>
+			<string>Owner</string>
+        </dict>
     </array>
     <key>CFBundleDisplayName</key>
     <string>open3d-viewer</string>

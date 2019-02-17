@@ -52,6 +52,8 @@
     NSTask* task = [[NSTask alloc] init];
     [task setLaunchPath:@"/bin/bash"];
     [task setArguments:[NSArray arrayWithObjects:@"-c", full_command, nil]];
+    // NSLog(@"%@", full_command);
+
     // [task setStandardOutput:[NSPipe pipe]];
     // [task setStandardInput:[NSPipe pipe]];
     [task launch];
