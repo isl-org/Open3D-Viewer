@@ -47,7 +47,7 @@
     NSString* open3d_viewer_path = [NSString
             stringWithFormat:@"%@/%@", resource_path, @"open3d-viewer-core"];
     NSString* full_command =
-            [NSString stringWithFormat:@"%@ %@", open3d_viewer_path, filename];
+            [NSString stringWithFormat:@"%@ \"%@\"", open3d_viewer_path, filename];
 
     NSTask* task = [[NSTask alloc] init];
     [task setLaunchPath:@"/bin/bash"];
