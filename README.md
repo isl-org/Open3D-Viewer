@@ -1,3 +1,5 @@
+Moved to the Open3D repo: https://github.com/isl-org/Open3D
+
 # Open3D-Viewer
 
 ## Ubuntu
